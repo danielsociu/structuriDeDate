@@ -97,10 +97,11 @@ int main()
     gbase=0;
     tester(n,gbase,gvals,"Seventh");
 
-    n=4000000;
+/*    n=4000000;
     gvals=5000000;
     gbase=0;
     tester(n,gbase,gvals,"Seventh");
+    */
 
 }
 
