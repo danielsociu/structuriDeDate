@@ -60,6 +60,7 @@ int main()
 {
     //Setting the output to fixed and 6 decimals
     cout<<fixed<<setprecision(6);
+
     //First test
     n=100;
     gvals=500;
@@ -96,6 +97,10 @@ int main()
     gbase=0;
     tester(n,gbase,gvals,"Seventh");
 
+    n=4000000;
+    gvals=5000000;
+    gbase=0;
+    tester(n,gbase,gvals,"Seventh");
 
 }
 
@@ -104,7 +109,7 @@ void tester(int n,int base,int vals,string x){
     auto f = [base,vals]() -> int{
         return base+rand()%vals;
     };
-    int* vec =  new int[n];
+    int* vec =  new int[n]{0};
     generate(vec,vec+n,f);
 
     //printing the initial
@@ -126,6 +131,9 @@ void tester(int n,int base,int vals,string x){
 
     //MERGE SORT
     gettingTests("merge",vec,n,base,vals);
+
+    //predefined one
+    gettingTests("predef",vec,n,base,vals);
 
     //deleting the vec
     delete[] vec;
@@ -193,7 +201,18 @@ void gettingTests(const string& sName,int* vec, int n, int base,int vals){
 
         //printing the time
         cout<<"Merge Sort : "<<timer<<"s\n";
+    }else if(typeS==transformer("predef"))
+    {
+        //MERGE SORT
+        start=high_resolution_clock::now();
+        sort(vec2,vec2+n);
+        stop=high_resolution_clock::now();
+        timer=float(duration_cast<microseconds>(stop-start).count())/float(million);
+
+        //printing the time
+        cout<<"Predef Sort: "<<timer<<"s\n";
     }
+    delete[] vec2;
 
 }
 int transformer(const string& sName){
@@ -292,7 +311,7 @@ void quickSort(int* v,int st, int dr){
         int rad=v[dr];
         for(int j=st;j<dr;j++)
             if(v[j]<rad){
-                int aux=v[i];
+                aux=v[i];
                 v[i]=v[j];
                 v[j]=aux;
                 i+=1;
