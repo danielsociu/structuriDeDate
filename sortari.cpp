@@ -61,6 +61,11 @@ int main()
     //Setting the output to fixed and 6 decimals
     cout<<fixed<<setprecision(6);
 
+    /*
+     * n-number of elements
+     * gbase - ranging from gbase
+     * gvals - till gvals
+    */
     //First test
     n=100;
     gvals=500;
@@ -97,12 +102,26 @@ int main()
     gbase=0;
     tester(n,gbase,gvals,"Seventh");
 
+    cout<<"\nEnter number of tests:";
+    cin>>n;
+    cout<<'\n';
+    for(int i=1;i<=n;++i)
+    {
+        cout<<"Enter number of elements to be generated:\n";
+        cin>>n;
+        cout<<"Enter values ranging from:\n";
+        cin>>gbase;
+        cout<<"to\n";
+        cin>>gvals;
+        cout<<'\n';
+        tester(n,gbase,gvals,to_string(i));
+    }
+
 /*    n=4000000;
     gvals=5000000;
     gbase=0;
     tester(n,gbase,gvals,"Seventh");
     */
-
 }
 
 void tester(int n,int base,int vals,string x){
